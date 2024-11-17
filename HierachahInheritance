@@ -1,0 +1,84 @@
+using System;
+
+public class clsPerson
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+   
+    public string FullName
+    { get
+        {
+            return FirstName + ' ' + LastName;
+        }
+    }
+
+   public clsPerson(int Id, string FirstName, string LastName)
+    {
+        this.Id = Id;
+        this.FirstName = FirstName;
+        this.LastName = LastName;
+
+    }
+
+}
+
+public class clsEmployee : clsPerson
+{
+    public string Job { get; set; }
+    public float Salary { get; set; }
+
+    public void IncreaseSalaryBy(float Amont)
+    {
+        Salary += Amont;
+    }
+
+   public clsEmployee(int Id, string FirstName, string LastName,
+       string Job, float Salary) :base (Id, FirstName, LastName)
+    {
+        this.Job = Job;
+        this.Salary = Salary;
+
+    }
+
+    public void InfoEmployee()
+    {
+        Console.WriteLine("Id: {0} and FirstName: {1} and LastName: {2} and Job: {3} and Salary: {4}"
+         ,Id, FirstName, LastName, Job, Salary);
+            
+    } 
+}
+
+public class clsTeacher : clsPerson
+{
+    public string Email { get; set; }
+   public clsTeacher(int Id, string FirstName, string LastName,
+        string Email): base (Id, FirstName, LastName)
+    {
+        this.Email = Email;
+    }
+
+    public void InfoTeacher()
+    {
+        Console.WriteLine("Id: {0} and FirstName: {1} and LastName: {2} and Email: {3}"
+         , Id, FirstName, LastName, Email);
+
+    }
+
+}
+internal class Program
+{ 
+    static void Main(string[] args)
+    {
+
+        clsEmployee Employee = new clsEmployee(11, "Mona", "Diab", "developer", 7000);
+        Employee.InfoEmployee();
+
+        clsTeacher Teacher = new clsTeacher(22,"Aly", "Diab", "xxx@gmil");
+        Teacher.InfoTeacher();
+
+        Console.ReadKey();
+    }
+}
+
+
