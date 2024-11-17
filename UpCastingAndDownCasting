@@ -1,0 +1,71 @@
+using System;
+
+public class clsPerson
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+   
+    public string FullName
+    { get
+        {
+            return FirstName + ' ' + LastName;
+        }
+    }
+
+   public clsPerson(int Id, string FirstName, string LastName)
+    {
+        this.Id = Id;
+        this.FirstName = FirstName;
+        this.LastName = LastName;
+
+
+    }
+
+}
+
+public class clsEmployee : clsPerson
+{
+    public string Job { get; set; }
+    public float Salary { get; set; }
+
+    public void IncreaseSalaryBy(float Amont)
+    {
+        Salary += Amont;
+    }
+
+   public clsEmployee(int Id, string FirstName, string LastName,
+       string Job, float Salary) :base (Id, FirstName, LastName)
+    {
+        this.Job = Job;
+        this.Salary = Salary;
+
+    }
+}
+internal class Program
+{ 
+    static void Main(string[] args)
+    {
+
+
+        //UpCasting
+        clsEmployee Employee1 = new clsEmployee(1234, "Mona", "Diab", "frontend", 5000);
+        clsPerson Person = Employee1;
+        Console.WriteLine($"Id: {Person.Id} and FullName: {Person.FullName}");
+
+
+        //DownCasting
+
+        clsPerson person1= new clsEmployee(4321, "Aziza", "Diab", "Backend", 7000);
+        clsEmployee Employee2 = (clsEmployee)person1;
+        Console.WriteLine($"Id: {Employee2.Id} and FullName: {Employee2.FullName}");
+
+
+        //clsPerson Person2 = new clsPerson(4321, "Mohmmed", "Diab");
+        //clsEmployee Employee3 = (clsEmployee)Person2;
+        //Eerro InvalidCastException
+
+        Console.ReadKey();
+    }
+}
+
