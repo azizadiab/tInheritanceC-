@@ -1,0 +1,62 @@
+using System;
+
+public class clsPerson
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+   
+    public string FullName
+    { get
+        {
+            return FirstName + ' ' + LastName;
+        }
+    }
+
+   public clsPerson(int Id, string FirstName, string LastName)
+    {
+        this.Id = Id;
+        this.FirstName = FirstName;
+        this.LastName = LastName;
+
+
+    }
+
+}
+
+public class clsEmployee : clsPerson
+{
+    public string Job { get; set; }
+    public float Salary { get; set; }
+
+    public void IncreaseSalaryBy(float Amont)
+    {
+        Salary += Amont;
+    }
+
+   public clsEmployee(int Id, string FirstName, string LastName,
+       string Job, float Salary) :base (Id, FirstName, LastName)
+    {
+        this.Job = Job;
+        this.Salary = Salary;
+
+    }
+}
+internal class Program
+{ 
+    static void Main(string[] args)
+    {
+
+        clsEmployee Employee = new clsEmployee(1234, "Aziza", "Diab", "Backend", 5000);
+
+        Console.WriteLine($"Id: {Employee.Id} and FullName: {Employee.FullName}");
+        Console.WriteLine($"Job: {Employee.Job}");
+        Console.WriteLine($"Salary: {Employee.Salary}");
+        Employee.IncreaseSalaryBy(100);
+        Console.WriteLine($"Salary after increase: {Employee.Salary}");
+
+        Console.ReadKey();
+    }
+}
+
+
