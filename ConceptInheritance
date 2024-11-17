@@ -1,0 +1,49 @@
+using System;
+
+public class clsPerson
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+   
+    public string FullName
+    { get
+        {
+            return FirstName + ' ' + LastName;
+        }
+    }
+
+}
+
+public class clsEmployee : clsPerson
+{
+    public string Job { get; set; }
+    public float Salary { get; set; }
+
+    public void IncreaseSalaryBy(float Amont)
+    {
+        Salary += Amont;
+    }
+}
+internal class Program
+{ 
+    static void Main(string[] args)
+    {
+
+        clsEmployee Employee = new clsEmployee();
+        Employee.Id = 1234;
+        Employee.FirstName = "Aziza";
+        Employee.LastName = "Diab";
+        Employee.Salary = 5000;
+        Employee.Job = "Backend";
+        Console.WriteLine($"Id: {Employee.Id} and FullName: {Employee.FullName}");
+        Console.WriteLine($"Job: {Employee.Job}");
+        Console.WriteLine($"Salary: {Employee.Salary}");
+        Employee.IncreaseSalaryBy(100);
+        Console.WriteLine($"Salary after increase: {Employee.Salary}");
+
+        Console.ReadKey();
+    }
+}
+
+
