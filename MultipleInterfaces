@@ -1,0 +1,95 @@
+using System;
+
+public interface IPerson
+{
+
+    string Address { get; set; }
+    string Country { get; set; }
+    void MyCountry();
+}
+
+public interface IPerson1
+{
+   void Code();
+}
+public abstract class clsPerson : IPerson, IPerson1
+{
+    public int Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Address { get; set; }
+    public string Country { get; set; }
+
+    public clsPerson(int Id, string FirstName, string LastName)
+    {
+        this.Id = Id;
+        this.FirstName = FirstName;
+        this.LastName = LastName;
+    }
+
+    public void MyCountry()
+    {
+        Console.WriteLine($"My Address {Address} and My Country {Country}");
+    }
+    public abstract void Info();
+
+    public void FullName()
+    {
+        Console.WriteLine($"My Full Name: {FirstName} {LastName}");
+    }
+
+    public void Code()
+    {
+        Console.WriteLine("F243");
+    }
+
+}
+
+public class clsEmployee : clsPerson
+{
+    public override void Info()
+    {
+        Console.WriteLine(this.FirstName);
+    }
+
+    public string Job { get; set; }
+    public float Salary { get; set; }
+
+    public void IncreaseSalaryBy(float Amont)
+    {
+        Salary += Amont;
+    }
+
+    public clsEmployee(int Id, string FirstName, string LastName,
+        string Job, float Salary) : base(Id, FirstName, LastName)
+    {
+        this.Job = Job;
+        this.Salary = Salary;
+
+    }
+
+    public void InfoEmployee()
+    {
+        Console.WriteLine("Id: {0} and FirstName: {1} and LastName: {2} and Job: {3} and Salary: {4}"
+         , Id, FirstName, LastName, Job, Salary);
+
+    }
+}
+
+
+internal class Program
+{
+    static void Main(string[] args)
+    {
+      
+        clsEmployee Employee = new clsEmployee(11, "Mona", "Diab", "developer", 7000);
+        Employee.InfoEmployee();
+        Employee.Info();
+        Employee.FullName();
+        Employee.Country = "Egypt";
+        Employee.Address = "22St";
+        Employee.MyCountry();
+        Employee.Code();
+        Console.ReadKey();
+    }
+}
